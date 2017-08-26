@@ -1,21 +1,21 @@
 #include <stdlib.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <getopt.h>
-//#include "read_write.h"
+#include "read_write.h"
 
 
 int main(int argc, char **argv) 
 {
 	char *input = NULL, *output = NULL;		// input and output file
-	double angle;							// the angle used for pixelsorting
+	double angle = 0.0;							// the angle used for pixelsorting
 	double black_threshold;					// 
 
 	int index = 0;
 	int c;
-
 	opterr = 0;
 
-
+	// Argument parsing
 	while ((c = getopt (argc, argv, "::i:o:a:")) != -1) {
 		switch (c) {
 			case 'a':
@@ -27,22 +27,28 @@ int main(int argc, char **argv)
 			case 'o':
 				output = optarg;							
 				break;
-			case ':':
-				++index;
-				printf("%d", index);
-				break;
 			case '?':
-				if (optopt == 'a' || optopt == 'i' || optopt == 'o')
+				if (optopt == 'i' || optopt == 'o') {
 					fprintf (stderr, "Option -%c requires an argument.\n", optopt);
-				else if (isprint (optopt))
+				} else if (isprint (optopt)) {
 					fprintf (stderr, "Unknown option `-%c'.\n", optopt);
-				else
+				} else {
 					fprintf (stderr, "Unknown option character `\\x%x'.\n", optopt);
-        		return 1;
+					return 1;
+				}
+				abort();
 			default:
 				abort();
 		}
 	}	
+
+	// If input and output are given
+	if (input && output) {
+		read_png_file(input);
+		write_png_file(output);
+	}
+
+	
 
 	return 0;
 }
