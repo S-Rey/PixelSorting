@@ -25,11 +25,12 @@ int main(int argc, char **argv)
 				input = optarg;
 				break;
 			case 'o':
-				input = optarg;							
+				output = optarg;							
 				break;
 			case ':':
 				++index;
 				printf("%d", index);
+				break;
 			case '?':
 				if (optopt == 'a' || optopt == 'i' || optopt == 'o')
 					fprintf (stderr, "Option -%c requires an argument.\n", optopt);
@@ -37,7 +38,7 @@ int main(int argc, char **argv)
 					fprintf (stderr, "Unknown option `-%c'.\n", optopt);
 				else
 					fprintf (stderr, "Unknown option character `\\x%x'.\n", optopt);
-        return 1;
+        		return 1;
 			default:
 				abort();
 		}
