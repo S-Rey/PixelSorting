@@ -44,8 +44,5 @@ int main(int argc, char **argv)
 		}
 	}	
 
-	printf("-i %s -o %s -a %f\n", input, output, angle);
-
-
 	return 0;
 }
