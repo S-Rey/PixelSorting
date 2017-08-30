@@ -10,7 +10,9 @@ png_byte color_type;
 png_byte bit_depth;
 png_bytep *row_pointers;
 
-void read_png_file(char *filename) {
+
+void read_png_file(char *filename) 
+{
 	FILE *fp = fopen(filename, "rb");
 
 	png_structp png = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
@@ -68,9 +70,9 @@ void read_png_file(char *filename) {
 	fclose(fp);
 }
 
-void write_png_file(char *filename) {
+void write_png_file(char *filename) 
+{
 	int y;
-
 	FILE *fp = fopen(filename, "wb");
 	if(!fp) abort();
 
@@ -104,19 +106,79 @@ void write_png_file(char *filename) {
 	png_write_image(png, row_pointers);
 	png_write_end(png, NULL);
 
+	printf("----Write-----\n");
 	for(int y = 0; y < height; y++) {
+		printf("free : %d\n", y);
 		free(row_pointers[y]);
 	}
+
 	free(row_pointers);
 
 	fclose(fp);
 }
 
-void process_png_file() {
+int convert_grayscale(const png_bytep px)
+{
+	int gray = (int)(px[0]* 0.299 + px[1] * 0.587 + px[2] * 0.114);
+	return gray;
+}
+
+
+int compare_light(const void *p, const void *q) {
+	int x = convert_grayscale(p);
+	int y = convert_grayscale(q);
+
+    /* Avoid return x - y, which can cause undefined behaviour
+       because of signed integer overflow. */
+    if (x < y)
+        return -1;  // Return -1 if you want ascending, 1 if you want descending order. 
+    else if (x > y)
+        return 1;   // Return 1 if you want ascending, -1 if you want descending order. 
+
+    return 0;
+}
+
+int threshold(png_bytep px, int value) {
+	return convert_grayscale(px) < value;
+}
+
+
+void process_png_file(threshold_value)
+{
+	printf("Process\n");
+	printf("Sizeof Png_bytep: %d\n", sizeof(png_bytep));
+
+	// Create a table for the pixels
+
 	for(int y = 0; y < height; y++) {
 		png_bytep row = row_pointers[y];
+		//printf("Line n°%d\n", y);
+		int begin = -1;
+		int inside = 0;
+		printf("Line : %d \n", y);
 		for(int x = 0; x < width; x++) {
 			png_bytep px = &(row[x * 4]);
+			int gray = convert_grayscale(px);
+
+			if (threshold(px, threshold_value) ||
+				((x + 1) == width)) {
+				// If this is the first px to trigger the threshold
+				if (begin == -1 && inside == 0) {
+					begin = x;
+					inside = 1;
+				// Inside a dark zone, adjust the beginning of boundary
+				} else if (begin != -1 && inside == 1 ) {
+					begin = x;
+				// If triggered by an other px outside the dark zone
+				} else if (begin != -1 && inside == 0) {
+					qsort(&row[(begin+1)*4], x - begin + 1, 4, compare_light);
+				// Reinitialize the boundary
+					begin = -1;
+					inside = 0;
+				}
+			} else {
+				inside = 0;
+			}
 			// Do something awesome for each pixel here...
 			//printf("%4d, %4d = RGBA(%3d, %3d, %3d, %3d)\n", x, y, px[0], px[1], px[2], px[3]);
 		}

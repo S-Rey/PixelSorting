@@ -13,10 +13,11 @@ int main(int argc, char **argv)
 
 	int index = 0;
 	int c;
+	int threshold_value = 20;
 	opterr = 0;
 
 	// Argument parsing
-	while ((c = getopt (argc, argv, "::i:o:a:")) != -1) {
+	while ((c = getopt (argc, argv, "i:o:a:t:")) != -1) {
 		switch (c) {
 			case 'a':
 				angle = atof(optarg);
@@ -26,6 +27,9 @@ int main(int argc, char **argv)
 				break;
 			case 'o':
 				output = optarg;							
+				break;
+			case 't':
+				threshold_value = (int)(atof(optarg));
 				break;
 			case '?':
 				if (optopt == 'i' || optopt == 'o') {
@@ -45,6 +49,8 @@ int main(int argc, char **argv)
 	// If input and output are given
 	if (input && output) {
 		read_png_file(input);
+		process_png_file(threshold_value);
+//		pixel_sort();
 		write_png_file(output);
 	}
 
