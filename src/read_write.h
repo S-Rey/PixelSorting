@@ -103,12 +103,11 @@ void write_png_file(char *filename)
 	// Use png_set_filler().
 	//png_set_filler(png, 0, PNG_FILLER_AFTER);
 
+	printf("Writing…\n");
 	png_write_image(png, row_pointers);
 	png_write_end(png, NULL);
 
-	printf("----Write-----\n");
 	for(int y = 0; y < height; y++) {
-		printf("free : %d\n", y);
 		free(row_pointers[y]);
 	}
 
@@ -145,8 +144,7 @@ int threshold(png_bytep px, int value) {
 
 void process_png_file(threshold_value)
 {
-	printf("Process\n");
-	printf("Sizeof Png_bytep: %d\n", sizeof(png_bytep));
+	printf("Processing…\n");
 
 	// Create a table for the pixels
 
@@ -155,10 +153,8 @@ void process_png_file(threshold_value)
 		//printf("Line n°%d\n", y);
 		int begin = -1;
 		int inside = 0;
-		printf("Line : %d \n", y);
 		for(int x = 0; x < width; x++) {
 			png_bytep px = &(row[x * 4]);
-			int gray = convert_grayscale(px);
 
 			if (threshold(px, threshold_value) ||
 				((x + 1) == width)) {
@@ -171,7 +167,7 @@ void process_png_file(threshold_value)
 					begin = x;
 				// If triggered by an other px outside the dark zone
 				} else if (begin != -1 && inside == 0) {
-					qsort(&row[(begin+1)*4], x - begin + 1, 4, compare_light);
+					qsort(&row[(begin+1)*4], x - begin, 4, compare_light);
 				// Reinitialize the boundary
 					begin = -1;
 					inside = 0;

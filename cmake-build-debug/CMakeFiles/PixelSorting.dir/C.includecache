@@ -17,6 +17,8 @@ stdio.h
 -
 getopt.h
 -
+string.h
+-
 read_write.h
 /home/samuel/GIT/PixelSorting/src/read_write.h
 
