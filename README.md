@@ -28,8 +28,8 @@ apt install imagemagick
 ```
 
 ## Cloning and compiling
+After cloning the repo, go to its directory and run
 ```
-cd PixelSorting
 make
 ```
 After that, a bin/ directory which contains the executable should have been created.
