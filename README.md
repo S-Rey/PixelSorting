@@ -36,9 +36,9 @@ make
 After that, a bin/ directory which contains the executable should have been created.
 To run the program, simply do:
 ./pixelsort [files] [options]
--i the path of the input file
--o the path of the output file
--t the threshold of bondary (integer from 0 to 255)
+- -i the path of the input file
+- -o the path of the output file
+- -t the threshold of bondary (integer from 0 to 255)
 
 ```
 cd bin/
