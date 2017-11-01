@@ -27,12 +27,20 @@ apt install coreutils
 apt install imagemagick
 ```
 
-## Compiling
+## Cloning and compiling
 ```
-
+git clone https://github.com/S-Rey/PixelSorting.git
 cd PixelSorting
 make
 ```
+After that, a bin/ directory which contains the executable should have been created.
+To run the program, simply do:
+./pixelsort [files] [options]
+-i the path of the input file
+-o the path of the output file
+-t the threshold of bondary (integer from 0 to 255)
 
-
-
+```
+cd bin/
+./pixelsort -i input.png -o output.png -t 70
+```
