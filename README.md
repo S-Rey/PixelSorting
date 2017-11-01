@@ -29,7 +29,6 @@ apt install imagemagick
 
 ## Cloning and compiling
 ```
-git clone https://github.com/S-Rey/PixelSorting.git
 cd PixelSorting
 make
 ```
