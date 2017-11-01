@@ -1,7 +1,8 @@
 # PixelSorting
 An implementation in C of the pixel sorting algorithm used to glitch pictures.
+<div>
 <img src="https://github.com/S-Rey/PixelSorting/blob/master/picture/Moon.jpg" width="350"/>
-
+</div>
 
 ## Getting Started
 ### Prerequisites
