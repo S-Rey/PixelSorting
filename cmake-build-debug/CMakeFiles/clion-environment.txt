@@ -1,2 +1,0 @@
-Options: 
-CMake: 3.7.1@/opt/Clion/bin/cmake/bin/cmake

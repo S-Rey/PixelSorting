@@ -1,1 +1,0 @@
-/usr/bin/cc  -g   CMakeFiles/PixelSorting.dir/src/error.c.o CMakeFiles/PixelSorting.dir/src/main.c.o  -o PixelSorting /usr/lib64/libpng.so 
