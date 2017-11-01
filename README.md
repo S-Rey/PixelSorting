@@ -1,5 +1,8 @@
 # PixelSorting
 An implementation in C of the pixel sorting algorithm used to glitch pictures.
+<img src="https://github.com/S-Rey/PixelSorting/blob/master/picture/Moon.jpg" width="400"/>
+
+
 ## Getting Started
 ### Prerequisites
 In order to run the program, you need to have the following libraries and programs installed:
@@ -36,4 +39,3 @@ cmake
 
 
 
-<img src="https://github.com/S-Rey/PixelSorting/blob/master/picture/Moon.jpg" width="400"/>
