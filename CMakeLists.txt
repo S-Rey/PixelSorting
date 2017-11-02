@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.7)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-project(pixelsorting)
+project(pixelsort)
 
 find_package(PNG REQUIRED)
 include_directories(${PNG_INCLUDE_DIR})
@@ -12,5 +12,5 @@ set(SOURCE_FILES
         src/main.c
         src/read_write.h)
 
-add_executable(pixelsorting ${SOURCE_FILES})
-target_link_libraries(pixelsorting ${PNG_LIBRARY})
+add_executable(pixelsort ${SOURCE_FILES})
+target_link_libraries(pixelsort ${PNG_LIBRARY})
