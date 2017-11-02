@@ -3,7 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "png.h"
+#include <png.h>
 
 int width, height;
 png_byte color_type;
