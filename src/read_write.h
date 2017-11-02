@@ -11,7 +11,7 @@ png_byte bit_depth;
 png_bytep *row_pointers;
 
 
-void read_png_file(char *filename) 
+void read_png_file(char *filename)
 {
     FILE *fp = fopen(filename, "rb");
 
@@ -70,7 +70,7 @@ void read_png_file(char *filename)
     fclose(fp);
 }
 
-void write_png_file(char *filename) 
+void write_png_file(char *filename)
 {
     int y;
     FILE *fp = fopen(filename, "wb");
@@ -123,7 +123,7 @@ int convert_grayscale(const png_bytep px)
 }
 
 
-int compare_light(const void *p, const void *q) 
+int compare_light(const void *p, const void *q)
 {
     int x = convert_grayscale(p);
     int y = convert_grayscale(q);
@@ -131,14 +131,14 @@ int compare_light(const void *p, const void *q)
     /* Avoid return x - y, which can cause undefined behaviour
        because of signed integer overflow. */
     if (x < y)
-        return -1;  // Return -1 if you want ascending, 1 if you want descending order. 
+        return -1;  // Return -1 if you want ascending, 1 if you want descending order.
     else if (x > y)
-        return 1;   // Return 1 if you want ascending, -1 if you want descending order. 
+        return 1;   // Return 1 if you want ascending, -1 if you want descending order.
 
     return 0;
 }
 
-int threshold(png_bytep px, int value) 
+int threshold(png_bytep px, int value)
 {
     return convert_grayscale(px) < value;
 }
@@ -182,4 +182,4 @@ void process_png_file(threshold_value)
 }
 
 
-#endif 
+#endif
