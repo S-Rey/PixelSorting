@@ -38,5 +38,4 @@ clean:
 .PHONY: remove
 remove: clean
 	@$(rm) $(BINDIR)/$(TARGET)
-	@echo "Executable removed!"
-
+@echo "Executable removed!"

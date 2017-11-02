@@ -1,3 +1,0 @@
-/home/samuel/PixelSorting/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/samuel/PixelSorting/src/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/samuel/PixelSorting/src/cmake-build-debug/CMakeFiles/pixel-sorting.dir
