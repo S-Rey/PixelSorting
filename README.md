@@ -1,7 +1,8 @@
 # PixelSorting
 An implementation in C of the pixel sorting algorithm used to glitch pictures.
-<img src="https://github.com/S-Rey/PixelSorting/blob/master/picture/Moon.jpg" width="350"/>
-
+<p align="center">
+  <img src="https://github.com/S-Rey/PixelSorting/blob/master/picture/Moon.jpg" width="350"/>
+</p>
 
 ## Getting Started
 ### Prerequisites
@@ -28,8 +29,8 @@ apt install imagemagick
 ```
 
 ## Cloning and compiling
+After cloning the repo, go to its directory and run
 ```
-cd PixelSorting
 make
 ```
 After that, a bin/ directory which contains the executable should have been created.
